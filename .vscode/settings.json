@@ -1,0 +1,6 @@
+{
+  "java.checkstyle.version": "9.2",
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  }
+}
