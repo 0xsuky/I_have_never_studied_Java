@@ -1,4 +1,3 @@
-
 public class PhoneBook {
   private String name;
   private String phoneNumber;
@@ -15,11 +14,12 @@ public class PhoneBook {
   }
 
   public void showPhoneInfo() {
-    System.out.println("-----------------------------");
+    System.out.println("");
+    System.out.println("입력된 정보 출력...");
     System.out.println("name : " + name);
     System.out.println("phone : " + phoneNumber);
     if (birthday != null) {
-      System.out.println("birthday : " + birthday);
+      System.out.println("birth : " + birthday);
     }
   }
 }
