@@ -3,5 +3,5 @@
   "[java]": {
     "editor.defaultFormatter": "redhat.java"
   },
-  "java.project.sourcePaths": ["Chapter15"]
+  "java.project.sourcePaths": ["PhoneBook/level5"]
 }
