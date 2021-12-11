@@ -35,9 +35,14 @@ public class PhoneBookManager {
   public void run() {
     int cmd;
     while (true) {
-      showMenu();
-      cmd = getCmd();
-      processCmd(cmd);
+      try {
+        showMenu();
+        cmd = getCmd();
+        processCmd(cmd);
+      } catch (MenuChoiceException e) {
+        System.out.println(e.getMessage());
+        System.out.println("메뉴 선택을 처음부터 다시 진행합니다.");
+      }
     }
   }
 
@@ -57,7 +62,7 @@ public class PhoneBookManager {
     return cmd;
   }
 
-  private void processCmd(int cmd) {
+  private void processCmd(int cmd) throws MenuChoiceException {
     switch (cmd) {
       case MENU_TYPE.INSERT:
         insertPb();
@@ -73,8 +78,7 @@ public class PhoneBookManager {
         System.exit(0);
         break;
       default:
-        System.out.println("잘못된 명령어를 입력하셨습니다.");
-        break;
+        throw new MenuChoiceException(cmd);
     }
   }
 
@@ -86,13 +90,18 @@ public class PhoneBookManager {
     System.out.println("데이터 입력을 시작합니다..");
     System.out.println("1. 일반, 2. 대학, 3. 회사");
     System.out.print("선택>> ");
-    int dataType = sc.nextInt();
-    sc.nextLine();
-    insertByDataType(dataType);
-    System.out.println("데이터 입력이 완료되었습니다.");
+    try {
+      int dataType = sc.nextInt();
+      sc.nextLine();
+      insertByDataType(dataType);
+      System.out.println("데이터 입력이 완료되었습니다.");
+    } catch (MenuChoiceException e) {
+      System.out.println(e.getMessage());
+      System.out.println("메뉴 선택을 처음부터 다시 진행합니다.");
+    }
   }
 
-  private void insertByDataType(int dataType) {
+  private void insertByDataType(int dataType) throws MenuChoiceException {
     switch (dataType) {
       case PB_TYPE.NORMAL:
         String[] pbInfo = getPbInfo();
@@ -111,7 +120,7 @@ public class PhoneBookManager {
         pbArr[pbCurIdx++] = pbCompanyInst;
         break;
       default:
-        System.out.println("일치하는 종류가 없습니다.");
+        throw new MenuChoiceException(dataType);
     }
   }
 
