@@ -1,7 +1,7 @@
 class Increment {
   int num = 0;
 
-  public void increment() {
+  public synchronized void increment() {
     num++;
   }
 
